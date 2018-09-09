@@ -1,0 +1,21 @@
+<template>
+  <div class="container">
+    <div class="row">
+      <app-quote v-for="(quote, index) in quotes" :key="index" >{{ quote }}</app-quote>
+    </div>
+  </div>
+</template>
+
+<script>
+import Quote from './Quote';
+export default {
+  props: ['quotes'],
+  components: {
+    appQuote: Quote
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+
+</style>

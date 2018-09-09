@@ -1,18 +1,38 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <new-quote @quoteAdded="newQuote"></new-quote>
+    <quote-grid :quotes="quotes"></quote-grid>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import QuoteGrid from '@/components/QuoteGrid';
+import NewQuote from '@/components/NewQuote';
 
 export default {
   name: 'home',
+  data() {
+    return {
+      quotes: ['A simple quote'],
+      maxQuotes: 10
+    };
+  },
+  methods: {
+    newQuote(quote) {
+      this.quotes.push(quote);
+    }
+  },
   components: {
-    HelloWorld
+    QuoteGrid,
+    NewQuote
   }
-}
+};
 </script>
+
+<style lang="scss" scoped>
+  .home {
+    margin-top: 20px;
+  }
+</style>
+
