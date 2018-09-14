@@ -1,7 +1,8 @@
 <template>
-  <div class="home">
+  <div class="home container">
+    <Header  :quoteCount="quotes.length" :maxQuotes="maxQuotes" />
     <new-quote @quoteAdded="newQuote"></new-quote>
-    <quote-grid :quotes="quotes"></quote-grid>
+    <quote-grid :quotes="quotes" @quoteDeleted="deleteQuote"></quote-grid>
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 // @ is an alias to /src
 import QuoteGrid from '@/components/QuoteGrid';
 import NewQuote from '@/components/NewQuote';
+import Header from '@/components/Header';
 
 export default {
   name: 'home',
@@ -21,18 +23,22 @@ export default {
   methods: {
     newQuote(quote) {
       this.quotes.push(quote);
+    },
+    deleteQuote(index) {
+      this.quotes.splice(index, 1);
     }
   },
   components: {
     QuoteGrid,
-    NewQuote
+    NewQuote,
+    Header
   }
 };
 </script>
 
 <style lang="scss" scoped>
-  .home {
-    margin-top: 20px;
-  }
+.home {
+  margin-top: 20px;
+}
 </style>
 
